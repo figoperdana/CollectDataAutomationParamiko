@@ -39,6 +39,14 @@ def get_router_info(ip):
         temp_output1 = send_command("show env | include CPU temperature:")
         temp_output2 = send_command("show env | include Temp: CPU")
         combined_temp_output = temp_output1 + temp_output2
+        
+        # Retrieve Power Supply Status
+        power_supply_output = send_command("show env | i Normal")
+        # Check if all power supply-related lines contain 'Normal'
+        if all("Normal" in line for line in power_supply_output.splitlines() if "Power Supply" in line or "P: pwr" in line):
+            power_supply_status = "Normal"
+        else:
+            power_supply_status = "Issue Detected"
 
         # Extract CPU temperature (numeric part only)
         cpu_temp_match = re.search(r"(\d+) Celsius", combined_temp_output)
@@ -71,7 +79,7 @@ def get_router_info(ip):
         else:
             total_memory, free_memory, available_percentage_str = "Unknown", "Unknown", "Unknown"
 
-        return [ip, os_version, cpu_temp] + fan_statuses + [total_memory, free_memory, available_percentage_str]
+        return [ip, os_version, cpu_temp, power_supply_status] + fan_statuses + [total_memory, free_memory, available_percentage_str]
     except Exception as e:
         return [ip, "Error: " + str(e), "Unknown"] + [""] * 4 + ["Unknown", "Unknown", "Unknown"]
     finally:
@@ -85,9 +93,7 @@ for ip in router_ips:
     data.append(router_data)
 
 # Save to CSV
-with open('router_data13.csv', 'w', newline='') as file:
+with open('router_data15.csv', 'w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(["IP Address", "OS Version", "Temperature (Threshold 80°)", "Fan 1 Status", "Fan 2 Status", "Fan 3 Status", "Fan 4 Status", "Total Memory", "Free Memory", "Available Memory (%)"])
+    writer.writerow(["IP Address", "OS Version", "Temperature (Threshold 80°)", "Power Supply Status", "Fan 1 Status", "Fan 2 Status", "Fan 3 Status", "Fan 4 Status", "Total Memory", "Free Memory", "Available Memory (%)"])
     writer.writerows(data)
-
-
