@@ -93,7 +93,7 @@ for ip in router_ips:
     data.append(router_data)
 
 # Save to CSV
-with open('router_data15.csv', 'w', newline='') as file:
+with open('router_data.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["IP Address", "OS Version", "Temperature (Threshold 80°)", "Power Supply Status", "Fan 1 Status", "Fan 2 Status", "Fan 3 Status", "Fan 4 Status", "Total Memory", "Free Memory", "Available Memory (%)"])
     writer.writerows(data)
