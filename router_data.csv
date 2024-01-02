@@ -1,4 +1,4 @@
 IP Address,OS Version,Temperature (Threshold 80°),Power Supply Status,Fan 1 Status,Fan 2 Status,Fan 3 Status,Fan 4 Status,Total Memory,Free Memory,Available Memory (%)
-10.95.230.5,"Error: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond",Unknown,,,,,Unknown,Unknown,Unknown
-10.95.230.6,"Error: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond",Unknown,,,,,Unknown,Unknown,Unknown
-10.96.32.3,"Error: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond",Unknown,,,,,Unknown,Unknown,Unknown
+10.95.230.5,15.6,59,Normal,OK,OK,OK,OK,2351011260,2283533896,97.13%
+10.95.230.6,16.03.07,42,Normal,OK,-,-,-,1690398752,1363210680,80.64%
+10.96.32.3,16.03.07,34,Normal,OK,OK,OK,OK,7981854752,7629815704,95.59%
